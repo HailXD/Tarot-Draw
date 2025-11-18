@@ -1,0 +1,101 @@
+html, body { height: 100%; }
+
+/* ChatGPT-like dark theme */
+:root {
+  --bg-base: #343541;
+  --bg-deep: #202123;
+  --text-primary: #ECECF1;
+  --text-muted: #ACACBE;
+  --border: rgba(255,255,255,0.12);
+  --accent: #10A37F;
+  --accent-600: #0E8D6F;
+}
+
+.theme-dark {
+  color: var(--text-primary);
+  background:
+    radial-gradient(1200px circle at 10% 10%, #3E3F4B 0%, var(--bg-base) 35%),
+    linear-gradient(180deg, var(--bg-base), var(--bg-deep));
+  min-height: 100%;
+}
+
+.glass-panel {
+  background: rgba(32,33,35,0.55);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.panel {
+  background: rgba(32,33,35,0.55);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.btn {
+  border-radius: 16px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+}
+.btn-primary {
+  background: var(--accent);
+  color: #0b0c0d;
+  border-color: transparent;
+}
+.btn-primary:hover { filter: brightness(1.05); }
+.btn-outline:hover { border-color: rgba(255,255,255,0.25); }
+
+/* 3D flip card styles */
+.tarot-card { perspective: 1200px; }
+.tarot-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(.2,.8,.2,1);
+}
+.tarot-inner.flipped { transform: rotateY(180deg); }
+.tarot-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.tarot-face.front { transform: rotateY(180deg); }
+
+/* Faster flip for mini preview cards */
+.flip-quick .tarot-inner { transition-duration: 300ms; }
+
+/* Riffle / stack jiggle */
+.riffle { animation: riffle 0.65s ease-in-out; }
+@keyframes riffle {
+  0%   { transform: translateY(0) rotate(0); }
+  50%  { transform: translateY(-18px) rotate(-6deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+/* Helper for deep-link anchor highlight */
+.anchor-highlight {
+  box-shadow: 0 0 0 2px rgba(255,255,255,.25) inset;
+  animation: pulse 1.2s ease-in-out 0s 2;
+}
+@keyframes pulse { 0%{opacity:1} 50%{opacity:.6} 100%{opacity:1} }
+
+/* Subtle card glow */
+.card-glow { box-shadow: 0 12px 28px rgba(0,0,0,0.45); }
+
+/* Enter-from-deck animation helper */
+.from-deck-enter {
+  transition: transform 450ms cubic-bezier(.2,.8,.2,1), opacity 150ms linear;
+}
+
+/* Text shuffle wiggle */
+.shuffle-tick { animation: shufflePulse 0.12s ease-in-out; }
+@keyframes shufflePulse {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+/* Ensure scrollIntoView doesn't hide under sticky header */
+.scroll-anchor { scroll-margin-top: 96px; }
