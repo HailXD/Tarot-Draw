@@ -532,9 +532,9 @@ function TarotApp() {
                                 {showDeck ? "Hide" : "Show"}
                             </button>
                             <button
-                                onClick={() => doShuffle({ randomizeSeed: true })}
+                                onClick={() => doShuffle()}
                                 className="btn btn-outline"
-                                title="Shuffle the full deck with a new seed"
+                                title="Shuffle the full deck with the current seed"
                             >
                                 Shuffle
                             </button>
